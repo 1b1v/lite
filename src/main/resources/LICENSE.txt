@@ -1,0 +1,13 @@
+1b1v — FAWE addon plugin
+Copyright (c) 2026 Almarel. All rights reserved.
+
+This software is the exclusive property of the author.
+Unauthorized copying, redistribution, reverse engineering,
+decompilation, or creation of derivative works via any medium
+is strictly prohibited without the express written permission
+of the author.
+
+This plugin is provided to authorized users for personal use
+on their Minecraft server only. Reselling, redistributing,
+or transferring the plugin jar file to third parties is
+prohibited.

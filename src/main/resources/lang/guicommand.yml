@@ -1,0 +1,24 @@
+# ==========================================
+# GUI: COMMANDS & MACROS
+# ==========================================
+gui:
+  command:
+    title: "Command Macros"
+
+    # Record button
+    record:
+      name: "New Macro"
+      lore:
+        - "Click to start recording"
+        - "Commands are typed in chat"
+
+    # Macro item
+    item:
+      name: "{0}"
+      cmd-prefix: "> "
+      empty: "(No commands)"
+      more: "... ({0} more)"
+
+    # Messages
+    message:
+      deleted: "Macro deleted."

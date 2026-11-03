@@ -1,0 +1,84 @@
+# ==========================================
+# GUI: CONSTRUCT EDITOR & MANAGER
+# ==========================================
+gui:
+  construct:
+    title: "Construct Manager{0}"
+    suffix-editor: " [EDITOR]"
+    suffix-tool: " [{0}]"
+
+    classic-mode:
+      name: "Classic Mode"
+      lore:
+        - "One point in the center."
+        - "Standard brush behavior."
+        - ""
+        - "Status: {0}"
+      status-active: "ACTIVE"
+      status-inactive: "INACTIVE"
+
+    group-item:
+      lore-count: "Elements: {0}"
+      status-multi: "IN LIST (Random)"
+      status-active: "ACTIVE"
+      status-inactive: "INACTIVE"
+      status-prefix: "Status: {0}"
+      lore-select: "LMB: Select ONLY this group"
+      lore-no-brush: "(Equip a brush to select)"
+
+    editor-panel:
+      save-name: "Save session"
+      save-lore:
+        - "Create a new group"
+        - "from {0} points"
+      clear-name: "Clear session"
+      clear-lore: "Delete all points"
+      empty-name: "Editor is empty"
+      empty-lore:
+        - "Equip /br editor"
+        - "and place points,"
+        - "to create a group."
+
+    buttons:
+      editor-mode: "Editor Mode"
+      editor-mode-lore: "You are editing global groups"
+
+      import-url: "Import via URL"
+      import-url-lore1: "Click to enter"
+      import-url-lore2: "a link (Pastebin/JSON) in chat."
+
+    controls:
+      seed-on: "Random Seed (ON)"
+      seed-off: "Random Seed (OFF)"
+      seed-lore-on: "Each point is unique."
+      seed-lore-off: "All points are identical."
+      scale-lore:
+        - "Size multiplier for the entire group."
+        - ""
+
+    # [NEW] Added for presenter
+    info:
+      title: "Editor Info"
+      lore:
+        - "This menu allows you to manage"
+        - "point groups."
+
+      no-group: "No group selected"
+      no-group-lore: "Go to the 'Group List' tab."
+      select-group: "Select a group!"
+      group-prefix: "Group: "
+      group-edit-lore: "Group editing menu."
+
+
+    group-editor:
+      title: "Construct Group: {0}"
+      point:
+        name: "Point #{0}"
+        lore-x: "X: {0}"
+        lore-y: "Y: {0}"
+        lore-z: "Z: {0}"
+        lore-rot: "Rot: {0} / {1}"
+      buttons:
+        back-lore: "Return to construct menu"
+        refresh: "Refresh"
+        refresh-lore: "Reload data"

@@ -1,0 +1,209 @@
+# ==========================================
+# GUI: COMMON ELEMENTS
+# ==========================================
+gui:
+  common:
+
+
+
+    values:
+      "on": "On"
+      "off": "Off"
+      none: "-"
+      none-group: "None"
+
+    info:
+      expand-view: "&eMMB — expand lore"
+      refresh: "&e" #Click — refresh / settings
+      no-access: "Access denied"
+      no-permission: "You do not have permission to use this."
+
+    nav:
+      # Left button (Buffer)
+      buffer:
+        name: "Buffer"
+        lore:
+          - "Click to open"
+          - "buffer menu"
+        name-active: "Current Brush Buffer"
+        lore-active:
+          - "Click to return"
+          - "to this brush buffer"
+
+      # Right button (Commands)
+      commands:
+        name: "Commands"
+        lore:
+          - "Click for list"
+          - "of commands and macros"
+        lore-current: "Current menu"
+
+      # Center button (Switcher)
+      center:
+        list-name: "Brush List"
+        list-lore:
+          - "Click to select brush"
+
+        settings-name: "{0} Settings"
+        settings-lore:
+          - "Click to configure"
+          - "current brush"
+
+    # Common action buttons
+    actions:
+      back: "Back"
+      close: "Close"
+      next: "Next"
+      save: "Save"
+      cancel: "Cancel"
+      # --- Added below ---
+      next-mode: "Next mode"
+      prev-mode: "Prev mode"
+      reset: "Reset"
+
+      # Return buttons (from guibrushsetting)
+      back-title: "🡠 Back to settings"
+      back-plump: "🡠 Back to Plump"
+      back-gen: "🡠 Back to Gen"
+      back-crystal: "🡠 Back to Crystal"
+      back-lore: "Return to brush menu"
+      add-block: "Add block"
+      clear-list: "Clear list"
+      done-back: "Done / Back"
+
+      macro-back: "Back to list"
+      macro-move-left: "<- Move left"
+      macro-move-right: "Move right ->"
+      macro-cant-move-left: "Cannot move left"
+      macro-cant-move-right: "Cannot move right"
+      macro-replace: "Replace command"
+      macro-cancel-sel: "Cancel selection"
+      macro-move: "Move"
+
+    # Control templates - moved from guibrushsetting
+    controls:
+      # {0} = +1, {1} = -1
+      lkm-pkm: "{0} / {1} — LMB / RMB"
+      # {0} = +10, {1} = -10
+      shift: "{0} / {1} — Shift"
+      # {0} = Action (Reset)
+      skm: "{0} — MMB"
+      toggle-lkm: "Toggle — LMB"
+      activate-lkm: "Activate — LMB"
+      toggle-skm: "Toggle — MMB"
+      edit-skm: "Edit — MMB"
+      delete-shift-pkm: "Delete — Shift+RMB"
+      apply-lkm: "Select — LMB"
+      delete-pkm: "Delete — RMB"
+
+      deselect-any: "Deselect — LMB/RMB"
+      multi-shift-lkm: "Multi-select — Shift+LMB"
+      copy-global-shift-pkm: "Copy to global — Shift+RMB"
+      unpack-skm: "Unpack group — MMB"
+      add-fav-skm: "To favorites — MMB"
+      # --- Added below ---
+      set-item: "Add/Set — Click with item"
+      reset-pkm: "Reset — RMB"
+      toggle-mode-shift-pkm: "Toggle mode — Shift+RMB"
+      add-block-hint: "Click here with a block from inventory."
+      shift-lkm-confirm: "Shift+LMB to confirm"
+
+      macro-replace-hint: "Click to enter"
+      macro-replace-hint2: "new command in chat."
+      macro-toggle-undo: "Toggle undo — Shift+RMB"
+
+      export-shift-pkm: "Export — Shift+RMB"
+
+    # Common scroll section
+    scroll:
+      main-name: "Scroll Mode: {0}"
+      checkbox: "{0}: {1}"
+      checkbox-lore: "Toggle in scroll — LMB"
+      buffer-slot: "Buffer Slot"
+      rotation: "Rotation"
+      scale-axis: "Axis Scale"
+      scale: "Scale"
+      radius: "Radius"
+
+    pagination:
+      prev: "Page {0}"
+      prev-lore: "Click to go back"
+      next: "Page {0}"
+      next-lore: "Click to go forward"
+
+    scale-axis:
+      name: "Scale {0}: {1}" # {0}=Axis, {1}=Value
+
+    # Section for WidgetRotationControl
+    rotation:
+      name: "{0} {1}" # {0}=Direction, {1}=Angle
+      up: "Up"
+      down: "Down"
+      left: "Left"
+      right: "Right"
+
+    tabs:
+      settings:
+        - "Brush parameters, size,"
+        - "masks and scroll."
+      point:
+        - "Property editor"
+        - "of active group/point."
+      group:
+        - "Constructor manager."
+        - "Select active group."
+      title-settings: "Brush Settings"
+      title-point: "Group Setting"
+      title-group: "Group List"
+
+    anchor:
+      name: "Anchor: {0}"
+      lore-offset: "Y Offset: {0}"
+
+    # Common parameters (Smear, Mask, Scale)
+    params:
+      mask: "Mask: {0}"
+      smear: "Smear: {0}"
+      scale: "Scale: {0}"
+      range: "Distance: {0}" # [NEW]
+      pattern: "Material: {0}" # [NEW]
+      # --- Added below ---
+      seed: "Random Seed: {0}"
+      rotation: "Rotation: {0}"
+      source-mask: "Source Mask: {0}"
+      size: "Size: {0}"
+
+    # Procedural parameters (Pro)
+    pro:
+      angle: "Rotation (Angle): {0}"
+      radius: "Radius: {0}"
+      radius-limit: "Limit: {0}"
+      hollow: "Hollow: {0}"
+
+
+    editors:
+      pattern: "Pattern Editor"
+      mask: "Mask Editor"
+      source-mask: "Source Mask"
+
+    # CopyPaste parameters (CP)
+    cp:
+      smooth: "Smoothing: {0}"
+      rot-mode-lore: "LMB/RMB — Change mode"
+
+    ignore:
+      name: "Flag -i"
+      list-header: "Ignored:"
+      item: "- {0}"
+      more: "...and {0} more"
+      empty: "List is empty"
+      add-hint: "Click with a block to add"
+      clear-hint: "Clear list — RMB"
+
+      editor-title: "Ignore List"
+      limit-reached: "&cLimit reached."
+
+      mode-white: "Mode: {0}WHITELIST {1}(Only these)"
+      mode-black: "Mode: {0}BLACKLIST {1}(Except these)"
+      toggle-hint: "{0}MMB: Toggle mode"
+      title-white: "{0}Whitelist"

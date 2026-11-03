@@ -1,0 +1,83 @@
+# ==========================================
+# GUI: CLIPBOARD BROWSER
+# ==========================================
+gui:
+  clipboard-browser:
+    # Headers
+    title-main: "BUFFER"
+    title-brush: "BrushCP #{0}"
+
+    # Messages (Chat)
+    message:
+      cleared: "Brush buffer cleared."
+      schems-added: "Added {0} schematics."
+      folder-not-empty: "Folder is not empty!"
+      duplicate-ignored: "Duplicate ignored."
+      read-error: "Read error: {0}"
+      group-unpacked: "Group unpacked."
+      group-copy-error: "Cannot copy group (unpack it first)."
+
+    # List items
+    item:
+      size: "Size: {0}"
+      scheme-active: "Schematic: {0} [Active]"
+      scheme-normal: "Schematic: {0}"
+      in-memory: "Memory Object"
+      count-suffix: " (x{0})"
+      blocks: " blocks"
+      group-prefix: "Group: "
+
+    # Tabs
+    tabs:
+      shared: "Shared"
+      favorites: "Favorites"
+      schems: "FAWE Schems"
+      current: "Current tab"
+      click: "Open tab"
+
+      mode-copy: "Multi-copy: {0}"
+      mode-copy-lore: "Click to toggle"
+      mode-rotate: "Multi-rotate: {0}"
+      mode-rotate-lore: "Click to toggle"
+
+      clear: "Clear buffer"
+      clear-lore:
+        - "LMB — clear all"
+
+    # File manager
+    file:
+      empty: "(empty)"
+      open: "LMB — open folder"
+      delete-folder: "RMB — Delete (if empty)"
+      rename-folder: "MMB — Rename"
+
+      lkm-add-brush: "LMB — Add to brush buffer"
+      lkm-load-global: "LMB — Load to global buffer"
+      pkm-delete-fav: "RMB — remove from favorites"
+
+      sort: "Sorting: {0}"
+      sort-folders: "Folders"
+      sort-schems: "Schematics"
+      sort-lore: "Click to change"
+
+      create: "Create folder"
+      create-lore: "LMB — Create new folder"
+
+      history-mode: "History recording: {0}"
+
+      add-all: "Add entire folder"
+      add-all-lore: "LMB — Add all schematics"
+
+    # Bottom panel
+    bottom:
+      buffer-current: "Buffer (Current)"
+      buffer-normal: "Buffer"
+      more: "...and {0} more"
+      switch-lore: "LMB — Switch"
+      fawe-active: "FAWE mode active"
+      fawe-lore: "1b1v buffer disabled"
+
+    # Quick access
+    quick:
+      path: "Path: {0}"
+      click: "LMB — Open folder"

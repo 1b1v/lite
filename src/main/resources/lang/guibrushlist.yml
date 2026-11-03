@@ -1,0 +1,67 @@
+# ==========================================
+# GUI: BRUSH LIST
+# ==========================================
+gui:
+  brush-list:
+    title: "Brush List"
+    errors:
+      dev-mode: "Feature is in development."
+      limit-buffer: "Buffered brush limit reached (8)."
+    buttons:
+      buffer: "Brush Buffer"
+      buffer-lore:
+        - "Click to return"
+        - "to global buffer"
+      buffer-main: "Buffer"
+      buffer-main-lore:
+        - "Click to open"
+        - "buffer menu"
+      list: "Brush List"
+      list-lore: "Current menu"
+      settings: "Brush Settings"
+      settings-lore:
+        - "Click to configure"
+        - "held item"
+      macro: "Create macro"
+      macro-lore:
+        - "For FAWE, Arceon, etc. brushes"
+        - "(In development)"
+    status:
+      default: "[Default]"
+      temp: "[Temporary]"
+      perm: "[Permanent]"
+      buffered: "[Buffered]"
+    headers:
+      cp: "Brush CP"
+      copy: "Brush Copy"
+      plump: "Brush Plump"
+      gen: "Brush Gen"
+      crystal: "Brush Crystal"
+      editor: "Brush Editor"
+    items:
+      lore:
+        # --- Control keys ---
+        equip: "Equip — LMB"
+        delete: "Delete brush — RMB"
+        make-perm: "Make permanent — Shift+LMB"
+        make-buffer: "Create buffer — Shift+LMB"
+        make-temp: "Make temporary — Shift+LMB"
+        settings: "Settings — Shift+RMB"
+        expand-view: "(MMB to expand)"
+        collapse-view: "(MMB to collapse)"
+        # ------------------------------
+
+        flags: "Flags: {0}"
+        scroll-mode: "Scroll Mode: {0}"
+        anchor: "Anchor: {0}"
+        range: "Range: {0}"
+        pattern: "Pattern: {0}"
+        radius: "Radius: {0}"
+        grain: "Grain: {0}"
+        formula: "Formula: {0}"
+        formula-full: "Formula (Full):"
+        constructs-on: "Constructs: ON ({0})"
+        constructs-off: "Constructs: OFF"
+        editor-mode: "Point editing mode"
+        points-count: "Points: {0}"
+        schems-count: "Schematics in buffer:"

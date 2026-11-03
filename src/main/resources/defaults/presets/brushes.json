@@ -1,0 +1,18 @@
+[
+  {
+    "presetName": "default_farwand",
+    "orderIndex": 0,
+    "starterPreset": true,
+    "starterTool": null,
+    "payload": {
+      "class_type": "tool",
+      "id": "default_farwand",
+      "tool": null,
+      "provider": "FAWE",
+      "toolType": "farwand",
+      "mainCommandLabel": "farwand",
+      "commandArgs": [],
+      "persistent": false
+    }
+  }
+]

@@ -1,0 +1,115 @@
+name: 1b1v
+version: '${project.version}'
+main: com.almarel.orion.Orion
+api-version: '1.20.5'
+author: Almarel
+description: Advanced FAWE addon.
+depend: [FastAsyncWorldEdit]
+
+#/*
+#* 1b1v — FAWE addon plugin
+#* Copyright (c) 2024–2026 Almarel. All rights reserved.
+#*
+#* Unauthorized copying, distribution, or modification of this software
+#* via any medium is strictly prohibited without the express written
+#* permission of the author.
+#*/
+
+commands:
+  # --- Core (1b1v) ---
+  1b1v:
+    description: "Manage 1b1v clipboards and core features."
+    usage: "/1b1v <sub-command>"
+    aliases: [1b, ob, obov]
+    permission: 1b1v.use
+
+permissions:
+
+  # ========================================================
+  # --- ACCESS TIERS (Bundles for server ranks) ---
+  # Cumulative: each tier grants everything from the tier before it.
+  # Grant a single tier node to a LuckPerms group/rank instead of
+  # managing individual permissions below.
+  # ========================================================
+
+  1b1v.basic:
+    description: "Access Tier 1 (Basic). Grants all Basic-category permissions."
+    default: false
+    children:
+      1b1v.use: true
+      1b1v.region.centervertical: true
+      1b1v.pattern.ridgedmulti: true
+      1b1v.pattern.flowers: true
+      1b1v.generation.platform: true
+      1b1v.region.frame: true
+      1b1v.region.polygon: true
+      1b1v.generation.onion: true
+  1b1v.intermediate:
+    description: "Access Tier 2 (Intermediate). Includes Tier 1 + all Intermediate-category permissions (brushes, curves, macros)."
+    default: false
+    children:
+      1b1v.basic: true
+      1b1v.brush.plump: true
+      1b1v.brush.crystal: true
+      1b1v.curve.liana: true
+      1b1v.pattern.grass: true
+      1b1v.mask.around: true
+  1b1v.advanced:
+    description: "Access Tier 3 (Advanced). Includes Tier 2 + all Advanced-category permissions (unlimited quotas, imports, heavy patterns)."
+    default: false
+    children:
+      1b1v.intermediate: true
+  1b1v.admin:
+    description: "Access Tier 4 (admin). Includes Tier 3 + server-wide administrative controls (global presets, plugin admin). Intended for server admin, not regular players."
+    default: false
+    children:
+      1b1v.advanced: true
+      1b1v.admin.use: true
+      1b1v.admin.notice: true
+  1b1v.use:
+    description: "Base access to the /1b1v command tree (required for every sub-command)."
+
+  1b1v.admin.use:
+    description: "Base access to general administrative commands (e.g., /1b1v reload)."
+
+  1b1v.admin.notice:
+    description: "Allows receiving in-game login notifications from 1b1v (updates, presets, asset sync)."
+
+  1b1v.brush.plump:
+    description: "Allows using the /br plump brush."
+
+  1b1v.brush.crystal:
+    description: "Allows using the /br crystal brush."
+
+  1b1v.region.frame:
+    description: "Allows using the //frame region command."
+
+  1b1v.region.polygon:
+    description: "Allows using the //polygon region command."
+
+  1b1v.region.centervertical:
+    description: "Allows using the //centerver region command."
+
+  # --- Generation Permissions ---
+  1b1v.generation.platform:
+    description: "Allows using the //platform generation command."
+
+  1b1v.generation.onion:
+    description: "Allows using the //onion generation command."
+
+  # --- Curve Permissions ---
+  1b1v.curve.liana:
+    description: "Allows generating hanging lianas along a curve (//liana)."
+
+  1b1v.pattern.ridgedmulti:
+    description: "Allows using the #ridgedmulti modifier pattern."
+
+  1b1v.pattern.flowers:
+    description: "Allows using the #flowers pattern."
+
+  1b1v.pattern.grass:
+    description: "Allows using the #grass pattern."
+
+  1b1v.mask.around:
+    description: "Allows using the #around mask."
+

@@ -1,0 +1,5 @@
+gui:
+  brush-gui:
+    fallback-title: "Settings"
+    suffix-hand: " (in your hand)"
+    suffix-buffer: " #{0} (in your hand)"

@@ -1,0 +1,21 @@
+[
+  {
+    "presetName": "macro #2",
+    "commands": [
+      "/speed 10"
+    ],
+    "icon": "LIME_DYE",
+    "atomicUndo": true,
+    "orderIndex": 0
+  },
+  {
+    "presetName": "macro #1",
+    "commands": [
+      "//set 1",
+      "/set 1"
+    ],
+    "icon": "GREEN_DYE",
+    "atomicUndo": true,
+    "orderIndex": 0
+  }
+]

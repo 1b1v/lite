@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.almarel</groupId>
+    <artifactId>1b1v</artifactId>
+    <version>0.26.2</version>
+    <packaging>jar</packaging>
+
+    <name>1b1v</name>
+    <description>Advanced FAWE addon for construction and terraforming.</description>
+
+    <!-- БЛОК СВОЙСТВ: Здесь мы задаем глобальные переменные для проекта -->
+    <properties>
+        <java.version>21</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- ВЕРСИЯ FAWE -->
+        <fawe.version>2.16.0</fawe.version>
+
+        <!-- Суффикс версии. По умолчанию для Pro -->
+        <build.suffix>-lite</build.suffix>
+
+        <!-- Edition-флаг для рантайма -->
+        <build.edition>lite</build.edition>
+
+        <junit.version>6.1.3</junit.version>
+    </properties>
+
+    <build>
+        <!-- Динамическое имя файла сборки -->
+        <finalName>${project.artifactId}${build.suffix}-${project.version}</finalName>
+        <plugins>
+            <!-- 1. Компилятор Maven. Указывает, что код пишется под Java 21 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.16.0</version>
+                <configuration>
+                    <release>${java.version}</release>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.48</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <!-- 2. Shade Plugin. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.6.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <minimizeJar>false</minimizeJar>
+                            <!-- Убираем мусор из META-INF -->
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                        <exclude>META-INF/MANIFEST.MF</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <!-- Переименовываем вшитые библиотеки под твой пакет -->
+                            <relocations>
+                                <relocation>
+                                    <pattern>net.byteflux.libby</pattern>
+                                    <shadedPattern>com.almarel.orion.lib.libby</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.bstats</pattern>
+                                    <shadedPattern>com.almarel.orion.bstats</shadedPattern>
+                                </relocation>
+                            </relocations>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- 3. Surefire: движок запуска тестов. Явно указываем версию,
+     т.к. дефолтная (из super POM) не умеет запускать JUnit 6 (Jupiter engine). -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.6.0</version>
+            </plugin>
+        </plugins>
+
+        <!-- Указываем, откуда брать файлы конфигурации (config.yml и т.д.) -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+    <!-- РЕПОЗИТОРИИ: Откуда Maven скачивает чужой код -->
+    <repositories>
+        <!-- Репозитории для Libby -->
+        <repository>
+            <id>alessiodp-repo</id>
+            <url>https://repo.alessiodp.com/releases/</url>
+        </repository>
+        <repository>
+            <id>maven-central</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+        <!-- Репозиторий PaperMC -->
+        <repository>
+            <id>papermc</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+        <!-- Репозиторий EngineHub: транзитивные зависимости FAWE (jchronic, jlibnoise) -->
+        <repository>
+            <id>enginehub</id>
+            <url>https://maven.enginehub.org/repo/</url>
+        </repository>
+    </repositories>
+
+    <!-- ЗАВИСИМОСТИ: Библиотеки, методы которых мы вызываем в коде -->
+    <dependencies>
+
+        <!-- 1. SERVER API & BRIGADIER (FOR VERSION 1.21.8) -->
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.21.8-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- ЗАМОРОЖЕНО (требует Java 25, см. FlightSpeedInjector в архиве):
+     Turbo flight speed (levels 11-20) через прямую запись в NMS Abilities.flyingSpeed.
+     Paper 26.2 server jar скомпилирован под Java 25 (class version 69.0), наш проект
+     на Java 21 (class version 65.0) — javac отказывается линковать.
+     Чтобы вернуть: поднять <java.version> проекта до 25 (ломает совместимость с
+     серверами на более старой JVM) либо вынести NMS-реализацию в отдельный
+     Maven-модуль со своим release=25 (но итоговый jar всё равно потребует JVM 25
+     целиком при единой сборке shade). Jar установлен локально в ~/.m2 командой
+     install:install-file, см. историю переписки от 2026-10 про /speed turbo.
+<dependency>
+    <groupId>io.papermc.paper</groupId>
+    <artifactId>paper-server-nms</artifactId>
+    <version>26.2</version>
+    <scope>provided</scope>
+</dependency>
+-->
+
+        <!-- 2. FAWE CORE -->
+        <dependency>
+            <groupId>com.fastasyncworldedit</groupId>
+            <artifactId>FastAsyncWorldEdit-Core</artifactId>
+            <version>${fawe.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 3. FAWE BUKKIT -->
+        <dependency>
+            <groupId>com.fastasyncworldedit</groupId>
+            <artifactId>FastAsyncWorldEdit-Bukkit</artifactId>
+            <version>${fawe.version}</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>FastAsyncWorldEdit-Core</artifactId>
+                    <groupId>*</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- 4. LIBBY: Загрузчик библиотек в рантайме -->
+        <dependency>
+            <groupId>net.byteflux</groupId>
+            <artifactId>libby-bukkit</artifactId>
+            <version>1.3.2</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Внутренний сетевой движок Minecraft (Для дебага пакетов) -->
+        <!--  используется только в debug/PacketSnifferListener  -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.139.Final</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 5. DATABASE & DI DEPENDENCIES -->
+        <!-- ====================================================================
+             ВНИМАНИЕ: HikariCP, sqlite-jdbc, guice — declared как provided в pom.xml,
+             но в рантайме загружаются через Libby в классе
+             com.almarel.orion.framework.loader.DependencyManager.
+
+             ВЕРСИИ ЗДЕСЬ И В DependencyManager ДОЛЖНЫ СОВПАДАТЬ!
+             При обновлении версии в pom.xml — обнови и в DependencyManager.java,
+             иначе получишь compile-time ≠ runtime (NoSuchMethodError и т.п.).
+             ==================================================================== -->
+        <!-- Пул соединений с БД -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>7.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Драйвер локальной БД SQLite -->
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.53.4.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Google Guice: Dependency Injection -->
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>7.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Логирование -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.26.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 6. BSTATS: Сбор анонимной статистики -->
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>3.2.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- 7. LOMBOK -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.48</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 8. JUNIT 5: Тестовая инфраструктура (не попадает в финальный jar — scope test) -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <!-- ПРОФИЛИ СБОРКИ (Обфускация) -->
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <!-- Только для release-сборки: Shade создаёт "сырой" jar с суффиксом -preobf.
+                     Это входной файл для ProGuard, наружу он никогда не публикуется. -->
+                <finalName>${project.artifactId}${build.suffix}-${project.version}-preobf</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.wvengen</groupId>
+                        <artifactId>proguard-maven-plugin</artifactId>
+                        <version>2.7.0</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>proguard</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <obfuscate>true</obfuscate>
+                            <!-- injar подхватывает переопределённый finalName (...-preobf.jar) -->
+                            <injar>${project.build.finalName}.jar</injar>
+                            <!-- outjar — явное чистое публичное имя -->
+                            <outjar>${project.artifactId}${build.suffix}-${project.version}.jar</outjar>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <!-- ИЗМЕНЕНО: версия должна совпадать с proguard-base в <dependencies> ниже -->
+                            <proguardVersion>7.8.0</proguardVersion>
+                            <proguardInclude>${project.basedir}/proguard.pro</proguardInclude>
+                            <libs>
+                                <lib>${java.home}/jmods/java.base.jmod</lib>
+                                <lib>${java.home}/jmods/java.desktop.jmod</lib>
+                                <lib>${java.home}/jmods/java.logging.jmod</lib>
+                                <lib>${java.home}/jmods/java.xml.jmod</lib>
+                                <lib>${java.home}/jmods/java.sql.jmod</lib>
+                            </libs>
+                        </configuration>
+                        <!-- НОВОЕ: переопределяем ProGuard, который плагин 2.7.0 тянет по умолчанию (7.7.0 / 9.1.10).
+                             ProGuard 7.8.0 понимает class version 69 (Java 25), нужно для чтения jmods JDK 25.
+                             Версии proguard-base и <proguardVersion> выше держать одинаковыми. -->
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.guardsquare</groupId>
+                                <artifactId>proguard-base</artifactId>
+                                <version>7.8.0</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>com.guardsquare</groupId>
+                                <artifactId>proguard-core</artifactId>
+                                <version>9.2.0</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

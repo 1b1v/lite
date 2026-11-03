@@ -1,0 +1,340 @@
+# ==========================================
+# 1. GLOBAL & COMMANDS
+# ==========================================
+command:
+  no-permission: "You do not have permission to use this command."
+  only-players: "This command can only be used by a player."
+  dynamic-error: "&cError: {0}"
+  invalid-arg: "Invalid argument: {0}"
+  unknown-material: "Unknown material: {0}"
+  help-macro: "&e/1b1v macro - Macros"
+  help:
+    header: "&8--- &b1b1v Help &8---"
+    open: "&e/1b1v &7- Open the last menu"
+    buffer: "&e/1b1v buffer &7- Open clipboard"
+    brush: "&e/1b1v brush &7- Active brush settings"
+    brushes: "&e/1b1v brushes &7- Brush selection and management"
+    #list: "&e/1b1v list &7- List of schematics in buffer"
+  reload-success: "&aConfiguration successfully reloaded!"
+
+# ==========================================
+# 2. IO & SCHEMATICS
+# ==========================================
+io:
+  file-exists: "File &e{0} &calready exists."
+  folder-exists: "Folder &e{0} &calready exists."
+  save-error: "Save error: {0}"
+  saved-single: "Schematic saved as &e{0}"
+  saved-count: "Saved &e{0} &7schematics to folder &e{1}"
+  fav-saved: "Item added to favorites."
+  disk-full: "ERROR: Not enough disk space to save! (Requires > 500MB)"
+
+  # Type.INFO (base color is gray, overridden to yellow &e)
+  transcode-starting: "Starting schematic group transcoding... This may take some time."
+
+  # Type.ERROR (base color is red, no extra colors needed!)
+  transcode-no-schematics: "No schematics found in the specified folder."
+  transcode-failed-all: "Failed to transcode any schematic from the folder."
+
+listener:
+  wait-copy: "Please wait for the copy to finish."
+  schem:
+    load-success: "Schematic &e{0} &7loaded into buffer."
+    load-error: "Schematic load error: {0}"
+    save-success: "Schematic saved as &e{0}"
+    unknown-format: "Unknown schematic format."
+    not-found: "Schematic &e{0} &cnot found."
+    save-usage: "Usage: //schem save <filename> [-f]"
+    load-usage: "Usage: //schem load <filename>"
+    downloading: "Downloading schematic..."
+    uploading: "Uploading to server..."
+    upload-success: "Schematic uploaded: &e{0} &7(Click to copy)"
+    upload-failed: "Failed to upload schematic."
+    upload-error: "Upload error: {0}"
+
+  transform-usage-rotate: "Usage: //rotate <yaw> [pitch] [roll]"
+  transform-invalid-dir: "Invalid direction."
+  transform-number-error: "Error: Enter a number."
+  no-objects-transform: "No objects to transform."
+  transform-singular: "object"
+  transform-plural: "{0} objects"
+  transform-action-rotated-s: "rotated"
+  transform-action-rotated-p: "rotated"
+  transform-action-flipped-s: "flipped"
+  transform-action-flipped-p: "flipped"
+  transform-success: "{0} successfully {1}."
+
+# ==========================================
+# 3. REGION & SELECTION
+# ==========================================
+region:
+  complete: "Region successfully created ({0} blocks)."
+  too-large: "Selection is too large ({0} blocks)."
+  pos-set: "Position {0} set ({1})."
+  selection-required: "Please select a region first."
+  error: "Region generation error: {0}"
+  invalid-number: "Invalid number: {0}"
+  empty-hand: "Hand is empty."
+  empty-slot: "Slot {0} is empty."
+
+  osn:
+    success: "Selection expanded (R: {0}, {1}, {2} | V: {3})."
+    usage: "Usage: //osn <radius> [-v vRadius] [-h hRadius]"
+  pos:
+    success: "Points 1 and 2 reset to player position."
+
+# ==========================================
+# 4. BUFFER & CLIPBOARD
+# ==========================================
+buffer:
+  empty: "Your 1b1v buffer is empty."
+  updated-single: "Buffer updated."
+  added-single: "Object added{0}"
+  added-single-brush-suffix: " to brush."
+  added-single-suffix: "."
+
+  # RAW Parts
+  item:
+    in-memory: "in-memory copy"
+    blocks: " blocks"
+    group-prefix: "&bGroup: "
+    count-suffix: " ({0} items)"
+
+  list-header: "&e--- Your buffer ({0} items) [{1}&e] ---"
+  mode-random: "&bRandom"
+  mode-selected: "&aSelected ({0})"
+  prefix-selected: "&a[>] "
+  prefix-normal: "&7 - "
+
+  no-memory-objects: "No objects in memory ({0}) to save."
+  context-brush: "brush"
+  context-global: "global buffer"
+  group-loaded: "Added group '{0}' ({1} schematics){2}."
+  target-brush: " to brush"
+  action-bar-selection: "&aSelection: {0}"
+
+# ==========================================
+# 5. COPY & PASTE SERVICE
+# ==========================================
+copy:
+  already-copying: "Copy operation is already in progress."
+  selection-required: "Please select a region first."
+  too-large: "Selection is too large: {0} > {1}"
+  mask-error: "Mask error: {0}"
+  copy-error: "Copy error: {0}"
+
+  success:
+    cut: "Object cut"
+    copied: "Object copied"
+    to-brush: " to brush {0}"
+    to-buffer: " to buffer"
+    anchor: ". Anchor: &e{0}"
+    details: "&7 ({0} blocks{1}{2})"
+    entities: ", {0} entities"
+    biomes: ", {0} biomes (4x4)"
+
+paste:
+  error-item: "Paste error: {0}"
+  success-item: "» Pasted: &b{0}"
+  group-empty: "Group is empty."
+  error-mask: "Mask error: {0}"
+  selection-updated: "Pasted area selected."
+
+# ==========================================
+# 6. BRUSH CONTROLLER
+# ==========================================
+brush:
+  wait-generation: "Wait for generation to complete..."
+
+  controller:
+    cant-bind-air: "Cannot bind brush to air."
+    cant-use-item: "Cannot use this item."
+    unbind: "Brush /br {0} unbound from {1}"
+    copy-equipped: "Copy brush bound to {0}{1}"
+    cp-bound: "Brush bound to &6{0}"
+    cp-error: "Argument error: {0}"
+
+    plump-active: "Plump brush (R={0}) activated on {1}."
+    gen-active: "Gen brush (R={0}) activated."
+    crystal-active: "Crystal brush (R={0}) activated on {1}."
+
+    editor-activated: "Editor mode activated."
+    editor-help:
+      - "&7LMB/RMB: Set point"
+      - "&7LMB on point: Select/Move"
+      - "&7RMB on point: Rotate"
+    pastebin-required: "Provide a link (Pastebin)."
+
+    json-copy: "&a[1b1v] JSON for '{0}' (Click to copy)"
+    json-hover: "Click to copy!"
+    group-not-found: "Group '{0}' not found."
+
+    bound: "Brush {0} bound to {1}."
+    tool-bound: "Tool {0} bound to {1}."
+    size-set: "Size set to {0}."
+    no-size: "This brush does not support size changing."
+
+  cp:
+    error-generic: "Error: {0}"
+    buffer-empty: "Buffer is empty."
+    too-large: "Object is too large (limit {0})."
+    pos-error: "Position calculation error."
+    load-error: "Buffer load error."
+    group-empty: "Group is empty."
+
+    magic-copy:
+      success-brush: "Magic copy: {0} objects added to brush."
+      success-global: "Magic copy completed."
+      details: "&7 (Total Volume: {1}, Anchor: {2})"
+      internal-error: "Internal error: Brush state not found."
+      search-timeout: "Search timed out."
+      too-large: "Object is too large for Magic Copy."
+
+    clear:
+      brush: "Current brush buffer cleared."
+      global: "Global buffer cleared."
+      all: "Cleared: Global buffer and {0} brush buffers."
+
+    action-bar:
+      added: "&aObject added! (Total: {0})"
+      empty: "&cClipboard is empty!"
+      rotation: "&6Rotation: {0}°"
+
+    file-missing: "Copy error: Source cache file is missing or corrupted."
+    generic-error: "BrushCP error: {0}"
+
+  selection:
+    too-large: "Object is too large."
+    too-large-add: "Object is too large (to add)."
+    selected: "Selected: {0}"
+    expanded: "Selection expanded: {0}x{1}x{2}"
+    error-set: "Failed to set selection: {0}"
+
+  gen:
+    syntax-error: "Syntax error: {0}"
+
+# ==========================================
+# 7. CONSTRUCT EDITOR
+# ==========================================
+construct:
+  editor:
+    center-set: "Center set."
+    point-added: "Point #{0} added ({1})"
+    point-removed-selected: "Selected point removed."
+    point-removed-last: "Last point removed. Remaining: {0}"
+    point-rotated: "Point #{0} rotated: {1}/{2}"
+    selected: "Selected: {0}"
+    deselected: "Deselected."
+    center-moved: "Center moved."
+    point-moved: "Point #{0} moved."
+    cleared: "Editor cleared."
+
+    limit-points: "Point limit reached ({0})."
+    too-far: "Too far from center."
+    too-close-center: "Too close to center (min {0} blocks)."
+    too-close-point: "Too close to another point (min {0} blocks)."
+    no-points: "No points to remove."
+    save-empty: "Nothing to save (0 points)."
+    save-no-center: "Center is not set."
+    limit-groups: "Group limit reached ({0})."
+
+    save-success: "Group '{0}' saved to global storage!"
+    save-info: "&7It is now available in all brushes (Crystal/Plump/Gen)."
+
+    # Type.RAW (Colors are not added here, they will be controlled by code if needed)
+    point-name-center: "Center"
+    point-name-numbered: "Point #{0}"
+
+# ==========================================
+# 8. SCROLL CONTROLLER
+# ==========================================
+scroll:
+  mode-changed: "&eScroll mode: &6{0}"
+  mode-reset: "&eScroll mode reset to: &6{0}"
+  scale: "&aScale: {0}"
+  radius: "&aRadius: {0}"
+  scale-axis: "&aScale {0}: {1}"
+  rotation: "&aRotation {0}"
+  axis-y: "Y (Yaw): {0}°"
+  axis-x: "X (Pitch): {0}°"
+  axis-z: "Z (Roll): {0}°"
+
+  action:
+    scale: "Scale"
+    scale-axis: "Axis Scale"
+    rotation: "Rotation"
+    buffer-slot: "Buffer Slot"
+    radius: "Radius"
+
+# ==========================================
+# 9. SHORTCUTS
+# ==========================================
+shortcut:
+  help: "Usage: &7//sc &f(start recording) or &7//sc delete <name>"
+  delete-usage: "Usage: &7//sc delete <name>"
+  deleted: "&fMacro &e{0} &fhas been successfully deleted."
+  no-permission: "You do not have permission to create macros."
+  limit-reached: "You have reached the macro limit ({0})."
+  cmd-limit: "&c[REC] &fCommand limit ({0}) reached."
+  cmd-limit-server: "Server maximum reached."
+  forbidden-cmd: "&c[REC] &fForbidden command: &7{0}"
+  rec:
+    added: "&e[REC] &f+ &7{0}"
+    saved: "Macro saved: &b{0}"
+  action-bar: "§4● §fRecording macro... {0}{1}s remaining"
+  recursion-error: "&cError: Recursion in {0}"
+
+# ==========================================
+# 10. PATTERN PARSERS
+# ==========================================
+parser:
+  players-only: "1b1v #clipboard is only available to players."
+  buffer-empty: "1b1v buffer is empty! Copy something first."
+  read-error: "Failed to read 1b1v buffer."
+  schem-not-found: "Schematic not found: {0}"
+  internal-error: "Internal 1b1v error."
+
+# ==========================================
+# 13. PROMPTS & INPUT
+# ==========================================
+prompt:
+  # Type.RAW (For Action Bar, [1b1v] prefix is not needed)
+  action-bar: "Waiting for input... {0}{1}s"
+
+# ==========================================
+# 14. NETWORK & IMPORT
+# ==========================================
+network:
+  downloading: "&7Downloading schematic from link..."
+  http-error: "HTTP Error: {0}"
+  file-too-large: "File is too large."
+  import-success: "&aSchematic imported successfully!"
+  invalid-json: "Invalid JSON format or limit reached."
+  download-error: "Download error: {0}"
+
+# ==========================================
+# 15. GUI MESSAGES (Refactored)
+# ==========================================
+gui:
+  brush-list:
+    errors:
+      limit-buffer: "You cannot use this slot (limit exceeded)."
+
+  clipboard:
+    group-unpacked: "Group unpacked successfully."
+    group-copy-error: "&cCannot copy group to this slot."
+    folder-not-empty: "&cFolder is not empty! Delete all schematics inside first."
+    duplicate-ignored: "&cThis schematic is already in the list."
+    cleared: "Buffer cleared successfully."
+
+  common:
+    limit-reached: "&cElement limit reached."
+    material-exists: "&cThis block is already in the list!"
+    material-prompt: "&e[1b1v] &7Hold a block in your cursor and click here."
+
+# ДОПОЛНЕНИЕ К СЕКЦИИ CONSTRUCT (Вставь это внутрь существующего блока construct.editor)
+# construct:
+#   editor:
+#     export-click: "&8[&b1b1v&8] &fНажмите сюда, чтобы скопировать код конструкта: &e{0}"
+#     export-hover: "&7Кликнуть для копирования"
+#     export-error: "&8[&b1b1v&8] &cОшибка экспорта: группа не найдена."

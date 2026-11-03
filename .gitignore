@@ -1,0 +1,26 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Maven: результаты локальных сборок
+target/
+
+# Скрипты, карты и документы
+scripts/
+zdocs/
+zmaps/
+
+# Отчёты
+boundary_report.md
+chat_hardcode_report.md
+english_hardcode_report.md
+gui_hardcode_report.md
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
